@@ -1,0 +1,35 @@
+[
+  {
+    "id": "app-bundle",
+    "origin": "self",
+    "loadedOn": ["/checkout", "/payment"],
+    "purpose": "Checkout UI and form handling",
+    "justification": "First-party application code required to render checkout",
+    "integrity": "sri-sha384",
+    "owner": "payments-web",
+    "authorizedBy": "PR #000",
+    "lastReviewed": "YYYY-MM-DD"
+  },
+  {
+    "id": "psp-hosted-fields",
+    "origin": "https://js.psp.example",
+    "loadedOn": ["/payment"],
+    "purpose": "PCI-compliant hosted card fields",
+    "justification": "Card data captured inside provider iframe to reduce scope",
+    "integrity": "n/a-dynamic-loader",
+    "owner": "payments-web",
+    "authorizedBy": "PR #000",
+    "lastReviewed": "YYYY-MM-DD"
+  },
+  {
+    "id": "error-tracking",
+    "origin": "self-proxied",
+    "loadedOn": ["/checkout", "/payment"],
+    "purpose": "JavaScript error capture",
+    "justification": "Proxied first-party to avoid third-party origin on payment page",
+    "integrity": "sri-sha384",
+    "owner": "platform",
+    "authorizedBy": "PR #000",
+    "lastReviewed": "YYYY-MM-DD"
+  }
+]
