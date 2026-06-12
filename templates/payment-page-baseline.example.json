@@ -1,0 +1,21 @@
+{
+  "_comment": "Baseline for Req 11.6.1 detection. Derived from the 6.4.3 inventory + enforced CSP. Volatile fields (nonce, csrf, price) are normalized to * by the detector before diffing. Changed only via reviewed PR.",
+  "url": "https://www.example.com/payment",
+  "headers": {
+    "content-security-policy": "default-src 'self'; script-src 'self' https://js.psp.example 'nonce-*'; connect-src 'self' https://api.psp.example; frame-src https://js.psp.example; object-src 'none'; base-uri 'self'",
+    "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+    "x-content-type-options": "nosniff",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "cache-control": "no-store"
+  },
+  "scripts": [
+    { "origin": "self", "integrity": "required" },
+    { "origin": "https://js.psp.example", "integrity": "n/a-dynamic" }
+  ],
+  "connectOrigins": ["self", "https://api.psp.example"],
+  "iframeOrigins": ["https://js.psp.example"],
+  "alerting": {
+    "high": ["csp-weakened", "unknown-script-origin", "unknown-connect-origin", "iframe-origin-changed", "missing-integrity"],
+    "medium": ["security-header-removed", "cache-header-changed"]
+  }
+}
